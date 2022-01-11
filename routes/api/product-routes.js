@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
       }
     ]
   })
-  .then(product => res.json(product))
+    .then(product => res.json(product))
 });
 
 // get one product
@@ -33,21 +33,21 @@ router.get('/:id', (req, res) => {
       }
     ]
   })
-  .then(product => res.json(product))
+    .then(product => res.json(product))
 });
 
 // create new product
 router.post('/', (req, res) => {
   const body = req.body;
-  
-  try{
-    const newProduct = await Post.create({
-      product_name: "Basketball",
-      price: 200.00,
-      stock: 3,
-      tagIds: [1, 2, 3, 4]
-    });
-    
+
+  // try {
+  //   const newProduct = Post.create({
+  //     product_name: "Basketball",
+  //     price: 200.00,
+  //     stock: 3,
+  //     tagIds: [1, 2, 3, 4]
+  //   });
+
   Product.create(req.body)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
@@ -67,9 +67,8 @@ router.post('/', (req, res) => {
     .catch((err) => {
       console.log(err);
       res.status(400).json(err);
-    });
-});
-
+    })
+})
 // update product
 router.put('/:id', (req, res) => {
   // update product data
@@ -119,7 +118,7 @@ router.delete('/:id', (req, res) => {
       id: req.params.id
     }
   })
-  .then(product => res.json(product))
+    .then(product => res.json(product))
 });
 
 module.exports = router;
